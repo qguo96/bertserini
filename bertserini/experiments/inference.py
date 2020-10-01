@@ -6,7 +6,7 @@ from bertserini.utils.utils_new import extract_squad_questions
 from bertserini.experiments.args import *
 
 if __name__ == "__main__":
-    questions = extract_squad_questions(args.dataset_path)
+    questions = extract_squad_questions(args.dataset_path, args.language)
     bert_reader = BERT(args.model_name_or_path, args.tokenizer_name)
     searcher = build_searcher(args.index_path, language=args.language)
 
