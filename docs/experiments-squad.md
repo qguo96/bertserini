@@ -45,7 +45,7 @@ For `rsvp-ai/bertserini-bert-base-squad`
 python -m bertserini.experiments.inference --dataset_path data/dev-v1.1.json \
                                            --index_path indexes/lucene-index.enwiki-20180701-paragraphs \
                                            --model_name_or_path rsvp-ai/bertserini-bert-base-squad \
-                                           --output squad_bert_base_pred.json
+                                           --output squad_bert_base_pred.json \
                                            --topk 10
 
 ```
@@ -55,7 +55,7 @@ For `rsvp-ai/bertserini-bert-large-squad`
 python -m bertserini.experiments.inference --dataset_path data/dev-v1.1.json \
                                            --index_path indexes/lucene-index.enwiki-20180701-paragraphs \
                                            --model_name_or_path rsvp-ai/bertserini-bert-large-squad \
-                                           --output prediction/squad_bert_large_pred.json
+                                           --output prediction/squad_bert_large_pred.json \
                                            --topk 10
 
 ```
@@ -63,7 +63,7 @@ python -m bertserini.experiments.inference --dataset_path data/dev-v1.1.json \
 
 ```
 mkdir temp
-pyhton -m bertserini.experiments.evaluate --eval_data data/dev-v1.1.json \
+python -m bertserini.experiments.evaluate --eval_data data/dev-v1.1.json \
                                           --search_file prediction/squad_bert_large_pred.json \
                                           --output_path temp \
                                           --dataset squad
@@ -72,8 +72,7 @@ pyhton -m bertserini.experiments.evaluate --eval_data data/dev-v1.1.json \
 Expected results:
 ```
 ## rsvp-ai/bertserini-large-squad, this is finetuned based on bert-large-wwm-uncased
-(0.4, {'exact_match': 41.54210028382214, 'f1': 49.45378799697662, 'recall': 51.119838584003105, 'precision': 49.8395951713666, 'cover': 47.228003784295176, 'overlap': 57.6631977294229})
-
+(0.4, {'exact_match': 41.81646168401135, 'f1': 49.697937151721774, 'recall': 51.37331878403011, 'precision': 50.09103987929191, 'cover': 47.38883632923368, 'overlap': 57.86187322611163})
 ## rsvp-ai/bertserini-bert-base-squad, this is finetuned based on bert-base-uncased
 (0.5, {'exact_match': 40.179754020813625, 'f1': 47.828056659017584, 'recall': 49.517951036176, 'precision': 48.3495034100538, 'cover': 45.50614947965941, 'overlap': 56.20624408703879})
 ```

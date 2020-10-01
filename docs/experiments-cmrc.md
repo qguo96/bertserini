@@ -48,8 +48,8 @@ For `rsvp-ai/bertserini-bert-base-cmrc`
 python -m bertserini.experiments.inference --dataset_path data/cmrc2018_dev_squad.json \
                                            --index_path indexes/lucene-index.wiki_zh_paragraph_with_title_0.6.0.pos+docvectors \
                                            --model_name_or_path rsvp-ai/bertserini-bert-base-cmrc \
-                                           --output prediction/cmrc2018_pred.json
-                                           --topk 10
+                                           --output prediction/cmrc2018_pred.json \
+                                           --topk 10 \
                                            --language zh
 
 ```
@@ -58,7 +58,7 @@ python -m bertserini.experiments.inference --dataset_path data/cmrc2018_dev_squa
 
 ```
 mkdir temp
-pyhton -m bertserini.experiments.evaluate --eval_data data/cmrc2018_dev.json \
+python -m bertserini.experiments.evaluate --eval_data data/cmrc2018_dev.json \
                                           --search_file prediction/cmrc2018_pred.json \
                                           --output_path temp \
                                           --dataset cmrc
@@ -69,5 +69,5 @@ Expected results:
 
 ```
 ## rsvp-ai/bertserini-bert-base-cmrc, this is bert-base-chinese finetuned on the chinese reading comprehension dataset(CMRC)
-(0.5, {'f1_score': 68.0033167812909, 'exact_match': 51.164958061509786, 'total_count': 3219, 'skip_count': 1})
+(0.5, {'f1_score': 67.77199045328142, 'exact_match': 50.916433675054364, 'total_count': 3219, 'skip_count': 0})
 ```
