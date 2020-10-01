@@ -1,25 +1,19 @@
 # Bertserini: Baseline on CMRC QA (in Chinese)
 
 1. Clone the repo with ```git clone https://github.com/rsvp-ai/bertserini.git```
-2. ```pip install -r requirements.txt```
+2. ```pip install -r requirements.txt -f --find-links https://download.pytorch.org/whl/torch_stable.html```
 
 ## Download PreBuilt Wikipedia Index
 
 We have indexed the 2018 Wikipedia Chinese dump. You can download the prepared index here:
 ```
-wget https://www.dropbox.com/s/6zn16mombt0wirs/lucene-index.zhwiki-20181201-paragraphs.tar.gz?dl=0
+cd indexes
+wget https://www.dropbox.com/s/6zn16mombt0wirs/lucene-index.zhwiki-20181201-paragraphs.tar.gz
+tar -xvf lucene-index.zhwiki-20181201-paragraphs.tar.gz
+rm lucene-index.zhwiki-20181201-paragraphs.tar.gz
+cd ..
 ```
 It contains the indexed 20181201 Chinese Wikipedia dump with Anserini.
-
-After unzipping these files, put them under the root path of this repo, and then you are ready to go.
-Take the following folder structure as an example:
-```
-bertserini
-+--- indexes
-|    +--- lucene-index.zhwiki-20181201-paragraphs
-|    |    +--- ...
-+--- other files under this repo
-```
 
 ## Download the pre-trained models
 
@@ -40,6 +34,7 @@ wget https://worksheets.codalab.org/rest/bundles/0xb70e5e281fcd437d9aa8f1c4da107
 mv index.html cmrc2018_dev.json
 wget https://worksheets.codalab.org/rest/bundles/0x72252619f67b4346a85e122049c3eabd/contents/blob/
 mv index.html cmrc2018_dev_squad.json
+cd ..
 ```
 
 ## Inferencing CMRC under the open-domain setting

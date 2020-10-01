@@ -1,24 +1,19 @@
 # Bertserini: Baseline on SQUAD QA
 
 1. Clone the repo with ```git clone https://github.com/rsvp-ai/bertserini.git```
-2. ```pip install -r requirements.txt```
+2. ```pip install -r requirements.txt -f --find-links https://download.pytorch.org/whl/torch_stable.html```
 
 ## Download PreBuilt Wikipedia Index
 
 We have indexed the 20180701 Wikipedia dump used in DrQA with Anserini; you can download the prepared index here:
 ```
-wget https://www.dropbox.com/s/b7qqaos9ot3atlp/lucene-index.enwiki-20180701-paragraphs.tar.gz?dl=0
-````
+cd indexes
+wget https://www.dropbox.com/s/b7qqaos9ot3atlp/lucene-index.enwiki-20180701-paragraphs.tar.gz
+tar -xvf lucene-index.enwiki-20180701-paragraphs.tar.gz
+rm lucene-index.enwiki-20180701-paragraphs.tar.gz
+cd ..
+```
 It contains the indexed 20180701 Wikipedia dump with Anserini.
-
-After unzipping these files, put them under the root path of this repo, and then you are ready to go.
-Take the following folder structure as an example:
-```
-bertserini
-+--- indexes
-|    +--- lucene-index.enwiki-20180701-paragraphs
-+--- other files under this repo
-```
 
 ## Download the pre-trained models
 
@@ -37,6 +32,7 @@ For example: ```--model_name_or_path rsvp-ai/bertserini-bert-large-squad```.
 ```
 cd data
 wget https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json
+cd ..
 ```
 
 ## Inferencing SQuAD under the open-domain setting
@@ -45,7 +41,7 @@ For `rsvp-ai/bertserini-bert-base-squad`
 python -m bertserini.experiments.inference --dataset_path data/dev-v1.1.json \
                                            --index_path indexes/lucene-index.enwiki-20180701-paragraphs \
                                            --model_name_or_path rsvp-ai/bertserini-bert-base-squad \
-                                           --output squad_bert_base_pred.json \
+                                           --output prediction/squad_bert_base_pred.json \
                                            --topk 10
 
 ```
@@ -64,7 +60,7 @@ python -m bertserini.experiments.inference --dataset_path data/dev-v1.1.json \
 ```
 mkdir temp
 python -m bertserini.experiments.evaluate --eval_data data/dev-v1.1.json \
-                                          --search_file prediction/squad_bert_large_pred.json \
+                                          --search_file prediction/squad_bert_base_pred.json \
                                           --output_path temp \
                                           --dataset squad
                                           
