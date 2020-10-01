@@ -1,11 +1,12 @@
 from typing import List
 
-from transformers import AutoTokenizer, AutoModelForQuestionAnswering, squad_convert_examples_to_features
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from torch.utils.data import DataLoader, SequentialSampler
 import torch
 from transformers.data.processors.squad import SquadResult
 
 from bertserini.reader.base import Reader, Question, Context, Answer
+from bertserini.utils.utils_feature import squad_convert_examples_to_features
 
 __all__ = ['BERT']
 
