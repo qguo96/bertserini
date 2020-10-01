@@ -7,9 +7,9 @@
 
 We have indexed the 20180701 Wikipedia dump used in DrQA with Anserini; you can download the prepared index here:
 ```
-wget ftp://72.143.107.253/BERTserini/english_wiki_2018_index.zip
+wget https://www.dropbox.com/s/b7qqaos9ot3atlp/lucene-index.enwiki-20180701-paragraphs.tar.gz?dl=0
 ````
-```*index.zip``` contains the indexed latest Wikipedia dump with Anserini.
+It contains the indexed 20180701 Wikipedia dump with Anserini.
 
 After unzipping these files, put them under the root path of this repo, and then you are ready to go.
 Take the following folder structure as an example:
